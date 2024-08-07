@@ -1,0 +1,44 @@
+.start-page {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    text-align: center;
+    background-color: var(--clr-black);
+}
+
+.start-page-content {
+    color: var(--clr-black);
+    margin: auto;
+}
+
+.start-page-img {
+    max-width: 500px;
+}
+
+.start-page-controls {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.start-page-input > label {
+    display: inline-block;
+    font-size: 2rem;
+    color: var(--clr-dark-gold);
+    margin-right: 1rem;
+}
+
+.start-page-input > input {
+    text-align: center;
+    font-size: 2rem;
+    background-color: var(--clr-light);
+    border-radius: var(--border-radius);
+    padding: 0.3rem;
+}
+
+.start-page-btn {
+    background-color: var(--clr-dark-gold);
+}
