@@ -1,18 +1,19 @@
 import React from "react";
 import { useState } from "react";
 
-import './App.css';
+import "./App.css";
 
 import StartPage from "../components/StartPage/StartPage";
+import Playfield from "../components/Playfield/Playfield";
 
 const App = () => {
     const [startGame, setStartGame] = useState(false);
 
     return (
-        <div className="main-container">
-            {startGame ? <div>lola</div> : <StartPage />}
-        </div>
-    )
-}
+        <>
+            {startGame ? <Playfield /> : <StartPage onClick={() => setStartGame(true)} />}
+        </>
+    );
+};
 
 export default App;
