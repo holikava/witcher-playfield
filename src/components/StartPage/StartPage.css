@@ -7,7 +7,6 @@
 
 .start-page-content {
     text-align: center;
-    color: var(--clr-black);
     margin: auto;
 }
 
@@ -19,5 +18,10 @@
 .start-page-btn {
     background-color: var(--clr-primary);
     box-shadow: var(--box-shadow-light);
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 2rem;
+    transition: var(--transition);
+}
+
+.start-page-btn:hover {
+    box-shadow: none;
 }

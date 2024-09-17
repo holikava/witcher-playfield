@@ -1,20 +1,17 @@
 :root {
     font-size: 16px;
     box-sizing: border-box;
-    scroll-behavior: smooth;
 
     --clr-black: #000000;
     --clr-dark: #1c2930;
     --clr-light: #f1eada;
     --clr-primary: #d18a07;
-    --clr-secondary: #6b9db1;
-    --clr-stat-health: #0f0664;
-    --clr-stat-armor: #3c7e11;
+    --clr-secondary: #407488;
 
-    --border: 2px solid var(--clr-secondary);
+    --border: 3px solid var(--clr-primary);
     --border-radius: 0.5rem;
     --box-shadow-light: 0px 0px 10px var(--clr-light);
-    --box-shadow-dark: 0px 0px 10px var(--clr-black);
+    --box-shadow-dark: 0px 0px 10px var(--clr-dark);
     --transition: all 0.3s ease-in-out;
 }
 
@@ -30,9 +27,9 @@ body {
     font-family: "PT Serif", serif;
     letter-spacing: 0.1rem;
     line-height: 1.6;
-    color: var(--clr-dark);
+    color: var(--clr-black);
     background-color: var(--clr-dark);
-    background-image: linear-gradient(to bottom, var(--clr-light) 0%, var(--clr-dark) 100%);
+    background-image: linear-gradient(to bottom, var(--clr-light) 0%,var(--clr-secondary) 60%, var(--clr-dark) 100%);
     background-repeat: no-repeat;
 }
 
@@ -42,8 +39,7 @@ img {
 }
 
 button,
-input,
-a {
+input {
     cursor: pointer;
     color: inherit;
     font-family: inherit;
@@ -54,12 +50,4 @@ a {
 
 input:focus-visible {
     outline: none;
-}
-
-ul {
-    list-style: none;
-}
-
-p {
-    line-height: 1.3;
 }

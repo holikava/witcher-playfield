@@ -5,7 +5,7 @@ input {
     text-transform: uppercase;
     background-color: transparent;
     border-radius: var(--border-radius);
-    border-bottom: 2px solid var(--clr-black);
+    border-bottom: 2px solid var(--clr-dark);
     padding: 0.2rem 0.5rem;
 }
 
@@ -14,6 +14,12 @@ input[type=number] {
     width: 50px;
     font-size: 1.3rem;
     margin: 0;
+}
+
+/* hide control buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 input[type=url] {

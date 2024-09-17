@@ -80,11 +80,12 @@ const MemberCard = ({ role }) => {
     });
 
     const watchHealthStatus = (e) => {
+        e.preventDefault();
         const parentElem = e.target.closest(".member-card");
-        if (!member.health) {
+        if (!e.target.value) {
             return;
         }
-        if (member.health < 10) {
+        if (e.target.value <= 5) {
             {
                 role === "player" &&
                     parentElem.classList.add("player-almost-dead");
@@ -100,24 +101,54 @@ const MemberCard = ({ role }) => {
     };
 
     const setAvatar = (e) => {
-        if (document.querySelector(".member-avatar-input")) {
-            document.querySelector(".member-avatar-input").remove();
+        e.preventDefault();
+        const targetElem = e.target.closest(".member-card");
+        if (targetElem.querySelector(".member-avatar-input")) {
+            targetElem.querySelector(".member-avatar-input").remove();
             return;
         }
-        const imgParent = e.target.closest(".member-card-img");
-        const elem = document.createElement("input");
-        elem.setAttribute("type", "url");
-        elem.className = "member-avatar-input";
-        e.target.closest(".member-card").append(elem);
+        const inputElem = document.createElement("input");
+        inputElem.setAttribute("type", "url");
+        inputElem.className = "member-avatar-input";
+        targetElem.append(inputElem);
 
-        elem.addEventListener("change", (e) => {
+        inputElem.addEventListener("change", (e) => {
             setMember({
                 ...member,
                 avatar: e.target.value,
             });
-            imgParent.style.opacity = "1";
-            document.querySelector(".member-avatar-input").remove();
+            targetElem.querySelector(".member-avatar-input").remove();
+            targetElem.querySelector(".member-card-img").style.opacity = "1";
         });
+    };
+
+    const addMemberToBattle = (e) => {
+        e.preventDefault();
+        const memberAvatar = e.target.closest(".member-card-img img");
+        const battleScreen = document.querySelector(".battlefield-screen");
+
+        function onMouseMove(event) {
+            const clone = memberAvatar.cloneNode(true);
+
+            let elemBelow = document.elementFromPoint(
+                event.clientX,
+                event.clientY
+            );
+
+            if (elemBelow.closest(".battlefield-screen")) {
+                let imgWrapper = document.createElement("div");
+                imgWrapper.className = "battlefield-screen-img";
+                imgWrapper.setAttribute('data-tooltip', clone.alt);
+                imgWrapper.append(clone);
+                battleScreen.append(imgWrapper);
+            } else {
+                return;
+            }
+
+            document.removeEventListener("pointermove", onMouseMove);
+        }
+
+        document.addEventListener("pointermove", onMouseMove);
     };
 
     const removeCard = (e) => {
@@ -135,11 +166,15 @@ const MemberCard = ({ role }) => {
             <div className='member-card-remove-btn' onClick={removeCard}>
                 <ButtonIcon icon={icons.removeBtn} />
             </div>
-            <div className='member-card-img' onDoubleClick={setAvatar}>
+            <div
+                className='member-card-img'
+                onDragStart={addMemberToBattle}
+                onDoubleClick={setAvatar}
+            >
                 {!member.avatar && (
                     <img
                         src={role === "player" ? avatars.player : avatars.enemy}
-                        alt='member avatar'
+                        alt={member.name}
                     />
                 )}
                 {member.avatar && (
@@ -171,7 +206,7 @@ const MemberCard = ({ role }) => {
                 )}
 
                 <div className='member-card-stats'>
-                    <div className='member-stat' onChange={watchHealthStatus}>
+                    <div className='member-stat'>
                         {role === "player"
                             ? icons.playerHealth
                             : icons.enemyHealth}
@@ -182,6 +217,7 @@ const MemberCard = ({ role }) => {
                                     ...member,
                                     health: Number(e.target.value),
                                 });
+                                watchHealthStatus(e);
                             }}
                         />
                     </div>

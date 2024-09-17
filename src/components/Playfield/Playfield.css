@@ -1,21 +1,20 @@
 .playfield {
+    position: relative;
     display: flex;
     justify-content: space-between;
     gap: 3rem;
-    height: 100vh;
+    height: 100dvh;
     text-align: center;
     padding: 1rem 2rem;
 }
 
 .playfield > * {
     flex: 1;
-    position: relative;
 }
 
 .playfield-title {
     position: relative;
     font-size: 2rem;
-    text-align: center;
     color: var(--clr-primary);
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
@@ -35,12 +34,7 @@
 }
 
 .playfield-message {
-    width: 70%;
-    color: var(--clr-black);
-    border-radius: var(--border-radius);
-    padding: 0.5rem;
-    margin: 0 auto;
-    opacity: 0.7;
+    color: var(--clr-dark);
 }
 
 .playfield-list {
@@ -53,17 +47,18 @@
 
 .playfield-add-btn {
      position: absolute;
-     top: 0;
+     top: 1rem;
+     transition: var(--transition);
 }
 
-.playfield-add-btn > button:hover {
+.playfield-add-btn:hover {
     transform: rotateZ(90deg);
 }
 
 .add-players {
-    left: -1rem
+    left: 1rem
 }
 
 .add-enemies {
-    right: -1rem;
+    right: 1rem;
 }

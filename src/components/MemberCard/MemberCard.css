@@ -6,10 +6,10 @@
     gap: 1rem;
     width: 100%;
     max-width: 300px;
+    min-height: 135px;
     cursor: pointer;
     line-height: 1.1;
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-light);
     padding: 0.5rem;
     transition: var(--transition);
 }
@@ -17,22 +17,35 @@
 .player-card {
     background-image: url(./../../assets/playercard-bg-image.jpg);
     background-position: top left;
+    box-shadow: var(--box-shadow-light);
 }
 
 .enemy-card {
     background-image: url(./../../assets/enemy-card-bg.jpg);
     background-position: left center;
+    box-shadow: var(--box-shadow-dark);
 }
 
 .player-almost-dead {
-    background-image: linear-gradient(to left, transparent 20%, rgb(194, 16, 16) 100%), url(./../../assets/playercard-bg-image.jpg);
+    background-image: linear-gradient(
+            to left,
+            transparent 20%,
+            rgb(194, 16, 16) 100%
+        ),
+        url(./../../assets/playercard-bg-image.jpg);
 }
 
 .enemy-almost-dead {
-    background-image: linear-gradient(to left, transparent 20%, rgb(194, 16, 16) 100%), url(./../../assets/enemy-card-bg.jpg);
+    background-image: linear-gradient(
+            to left,
+            transparent 20%,
+            rgb(194, 16, 16) 100%
+        ),
+        url(./../../assets/enemy-card-bg.jpg);
 }
 
 .member-card-img {
+    cursor: pointer;
     position: relative;
     flex-shrink: 0;
     width: 40%;
@@ -52,6 +65,7 @@
     width: auto;
     height: inherit;
     border-radius: var(--border-radius);
+    user-select: none;
 }
 
 .member-avatar-input {
