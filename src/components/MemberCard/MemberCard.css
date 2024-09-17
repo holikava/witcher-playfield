@@ -1,0 +1,109 @@
+.member-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+    min-height: 135px;
+    cursor: pointer;
+    line-height: 1.1;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    transition: var(--transition);
+}
+
+.player-card {
+    background-image: url(./../../assets/playercard-bg-image.jpg);
+    background-position: top left;
+    box-shadow: var(--box-shadow-light);
+}
+
+.enemy-card {
+    background-image: url(./../../assets/enemy-card-bg.jpg);
+    background-position: left center;
+    box-shadow: var(--box-shadow-dark);
+}
+
+.player-almost-dead {
+    background-image: linear-gradient(
+            to left,
+            transparent 20%,
+            rgb(194, 16, 16) 100%
+        ),
+        url(./../../assets/playercard-bg-image.jpg);
+}
+
+.enemy-almost-dead {
+    background-image: linear-gradient(
+            to left,
+            transparent 20%,
+            rgb(194, 16, 16) 100%
+        ),
+        url(./../../assets/enemy-card-bg.jpg);
+}
+
+.member-card-img {
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 80px;
+    height: 100px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-dark);
+    overflow: hidden;
+    opacity: 0.6;
+}
+
+.member-card-img > img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: inherit;
+    border-radius: var(--border-radius);
+    user-select: none;
+}
+
+.member-avatar-input {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-light);
+    border-radius: var(--border-radius);
+    z-index: 100;
+}
+
+.member-card-info > * + * {
+    margin-top: 0.2rem;
+}
+
+.member-card-name {
+    font-size: 1.2rem;
+}
+
+.member-card-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.member-stat img {
+    display: inline;
+    width: auto;
+    vertical-align: middle;
+}
+
+.member-card-remove-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: var(--transition);
+}
+
+.member-card-remove-btn:hover {
+    transform: rotateZ(180deg);
+}
