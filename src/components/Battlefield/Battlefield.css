@@ -39,6 +39,7 @@
     gap: 1rem;
     width: 100%;
     min-width: 300px;
+    color: var(--clr-light);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-light);
     padding: 1rem 2rem;

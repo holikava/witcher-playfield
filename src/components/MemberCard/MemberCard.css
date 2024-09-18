@@ -72,6 +72,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    text-transform: lowercase;
     background-color: var(--clr-light);
     border-radius: var(--border-radius);
     z-index: 100;

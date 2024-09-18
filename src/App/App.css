@@ -51,3 +51,9 @@ input {
 input:focus-visible {
     outline: none;
 }
+
+@media (max-width: 800px) {
+    :root {
+        font-size: 12px;
+    }
+}

@@ -8,12 +8,7 @@ import "./../../App/App.css";
 
 const icons = {
     addBtn: (
-        <img
-            width='50'
-            height='50'
-            src='https://img.icons8.com/quill/50/filled-plus-2-math.png'
-            alt='filled-plus-2-math'
-        />
+        <img width="30" height="30" src="https://img.icons8.com/quill/30/plus-math.png" alt="plus-math"/>
     ),
 };
 
@@ -25,12 +20,16 @@ const Playfield = () => {
         <>
             <div className='playfield'>
                 <div className='playfield-cards'>
-                    <h2 className='playfield-title'>Players</h2>
-                    <div
-                        className='playfield-add-btn add-players'
-                        onClick={() => setPlayersCount(playersCount + 1)}
-                    >
-                        <ButtonIcon icon={icons.addBtn} />
+                    <div className='playfield-heading'>
+                        <h2 className='playfield-title'>Players</h2>
+                        <div className='playfield-add-btn'>
+                            <ButtonIcon
+                                icon={icons.addBtn}
+                                onClick={() =>
+                                    setPlayersCount(playersCount + 1)
+                                }
+                            />
+                        </div>
                     </div>
                     {playersCount === 0 && (
                         <h3 className='playfield-message'>
@@ -44,12 +43,16 @@ const Playfield = () => {
                     </div>
                 </div>
                 <div className='playfield-cards'>
-                    <h2 className='playfield-title'>Enemies</h2>
-                    <div
-                        className='playfield-add-btn add-enemies'
-                        onClick={() => setEnemiesCount(enemiesCount + 1)}
-                    >
-                        <ButtonIcon icon={icons.addBtn} />
+                <div className='playfield-heading'>
+                        <h2 className='playfield-title'>Enemies</h2>
+                        <div className='playfield-add-btn'>
+                            <ButtonIcon
+                                icon={icons.addBtn}
+                                onClick={() =>
+                                    setEnemiesCount(enemiesCount + 1)
+                                }
+                            />
+                        </div>
                     </div>
                     {enemiesCount === 0 && (
                         <h3 className='playfield-message'>

@@ -109,6 +109,7 @@ const MemberCard = ({ role }) => {
         }
         const inputElem = document.createElement("input");
         inputElem.setAttribute("type", "url");
+        inputElem.setAttribute('placeholder', 'link on image');
         inputElem.className = "member-avatar-input";
         targetElem.append(inputElem);
 
@@ -138,7 +139,9 @@ const MemberCard = ({ role }) => {
             if (elemBelow.closest(".battlefield-screen")) {
                 let imgWrapper = document.createElement("div");
                 imgWrapper.className = "battlefield-screen-img";
-                imgWrapper.setAttribute('data-tooltip', clone.alt);
+                if (clone.alt) {
+                    imgWrapper.setAttribute('data-tooltip', clone.alt);
+                }
                 imgWrapper.append(clone);
                 battleScreen.append(imgWrapper);
             } else {
