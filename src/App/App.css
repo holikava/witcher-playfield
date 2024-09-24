@@ -8,10 +8,11 @@
     --clr-primary: #d18a07;
     --clr-secondary: #407488;
 
-    --border: 3px solid var(--clr-primary);
+    --border: 2px solid var(--clr-primary);
     --border-radius: 0.5rem;
     --box-shadow-light: 0px 0px 10px var(--clr-light);
     --box-shadow-dark: 0px 0px 10px var(--clr-dark);
+    --box-shadow-color: 0px 0px 10px var(--clr-primary);
     --transition: all 0.3s ease-in-out;
 }
 
