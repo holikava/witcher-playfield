@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ButtonIcon from "../ButtonIcon/ButtonIcon";
 import MemberCard from "../MemberCard/MemberCard";
 import Battlefield from "../Battlefield/Battlefield";
+import Header from "../Header/Header";
 
 import "./Playfield.css";
 import "./../../App/App.css";
@@ -18,6 +19,7 @@ const Playfield = () => {
 
     return (
         <>
+            <Header />
             <div className='playfield'>
                 <div className='playfield-cards'>
                     <div className='playfield-heading'>
@@ -66,7 +68,6 @@ const Playfield = () => {
                     </div>
                 </div>
             </div>
-            <Battlefield />
         </>
     );
 };

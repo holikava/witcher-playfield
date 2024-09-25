@@ -1,7 +1,7 @@
 button {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bolder;
     border-radius: var(--border-radius);
-    padding: 0 1rem;
+    padding: 0.3rem 1rem;
     transition: var(--transition);
 }

@@ -1,11 +1,8 @@
 .battlefield {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 3rem;
-    width: max-content;
-    height: auto;
     color: var(--clr-black);
+    padding: 1rem 0 2rem;
+    margin: 0 auto;
+    transition: var(--transition);
 }
 
 .battlefield-heading {
@@ -13,7 +10,6 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    width: max-content;
     border-radius: var(--border-radius);
     transition: var(--transition);
     margin: 0 auto 1rem;
@@ -21,7 +17,7 @@
 
 .battlefield-title {
     font-size: 1.5rem;
-    color: var(--clr-primary);
+    color: var(--clr-dark);
 }
 
 .battlefield-btn {
@@ -37,12 +33,14 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    width: 100%;
+    width: max-content;
     min-width: 300px;
     color: var(--clr-light);
+    background-color: var(--clr-dark);
     border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-light);
+    box-shadow: var(--box-shadow-dark);
     padding: 1rem 2rem;
+    margin: 0 auto;
     transition: var(--transition);
 }
 

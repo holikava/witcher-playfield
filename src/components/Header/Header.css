@@ -1,0 +1,44 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--box-shadow-dark);
+    background-color: var(--clr-secondary);
+    padding: 1rem 3rem;
+}
+
+.header > * {
+    flex-basis: 300px;
+}
+
+.header-timer {
+    text-align: left;
+}
+
+.header-fight-btn {
+    text-align: center;
+}
+
+.header-fight-btn > button {
+    background-color: var(--clr-primary);
+    box-shadow: var(--box-shadow-dark);
+}
+
+.header-fight-btn > button:hover {
+    background-color: var(--clr-light);
+    box-shadow: none;
+}
+
+.header-save-btn {
+    text-align: right;
+}
+
+.header-save-btn > button {
+    background-color: var(--clr-light);
+    box-shadow: var(--box-shadow-light);
+}
+
+.header-save-btn > button:hover {
+    background-color: var(--clr-primary);
+    box-shadow: none;
+}
