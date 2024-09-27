@@ -123,6 +123,19 @@ const MemberCard = ({ role }) => {
         });
     };
 
+    const checkoutSavedMemberData = (value) => {
+        if (localStorage.getItem(value)) {
+            let savedData = JSON.parse(localStorage.getItem(value));
+            for (let key in savedData) {
+                setMember({
+                    ...member
+                })
+                member[key] = savedData[key] ?? '';
+            }
+        }
+        console.log(member);
+    };
+
     const addMemberToBattle = (e) => {
         e.preventDefault();
         const memberAvatar = e.target.closest(".member-card-img img");
@@ -145,7 +158,6 @@ const MemberCard = ({ role }) => {
 
             document.removeEventListener("pointermove", onMouseMove);
         }
-
         document.addEventListener("pointermove", onMouseMove);
     };
 
@@ -155,6 +167,7 @@ const MemberCard = ({ role }) => {
 
     return (
         <div
+            id={member.name}
             className={
                 role === "player"
                     ? "member-card player-card"
@@ -176,7 +189,7 @@ const MemberCard = ({ role }) => {
                     />
                 )}
                 {member.avatar && (
-                    <img src={member.avatar} alt='member avatar' />
+                    <img src={member.avatar} alt={member.name} />
                 )}
             </div>
 
@@ -184,16 +197,21 @@ const MemberCard = ({ role }) => {
                 <Input
                     className='member-card-name'
                     type='text'
-                    onChange={(e) =>
+                    name='name'
+                    value={member.name}
+                    onChange={(e) => {
                         setMember({
                             ...member,
                             name: e.target.value,
-                        })
-                    }
+                        });
+                        checkoutSavedMemberData(e.target.value)
+                    }}
                 />
                 {role === "player" && (
                     <Input
                         type='text'
+                        name='type'
+                        value={member.type}
                         onChange={(e) =>
                             setMember({
                                 ...member,
@@ -210,6 +228,8 @@ const MemberCard = ({ role }) => {
                             : icons.enemyHealth}
                         <Input
                             type='number'
+                            name='health'
+                            value={member.health}
                             onChange={(e) => {
                                 setMember({
                                     ...member,
@@ -225,6 +245,8 @@ const MemberCard = ({ role }) => {
                             : icons.enemyArmor}
                         <Input
                             type='number'
+                            name='armor'
+                            value={member.armor}
                             onChange={(e) => {
                                 setMember({
                                     ...member,
@@ -238,6 +260,8 @@ const MemberCard = ({ role }) => {
                             {icons.enemyEvading}
                             <Input
                                 type='number'
+                                name='evading'
+                                value={member.evading}
                                 onChange={(e) => {
                                     setMember({
                                         ...member,
@@ -252,10 +276,12 @@ const MemberCard = ({ role }) => {
                             {icons.enemyEndurance}
                             <Input
                                 type='number'
+                                name='endurancer'
+                                value={member.endurance}
                                 onChange={(e) => {
                                     setMember({
                                         ...member,
-                                        endurancer: Number(e.target.value),
+                                        endurance: Number(e.target.value),
                                     });
                                 }}
                             />

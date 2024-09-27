@@ -7,7 +7,7 @@ import StartPage from "../components/StartPage/StartPage";
 import Playfield from "../components/Playfield/Playfield";
 
 const App = () => {
-    const [startGame, setStartGame] = useState(true);
+    const [startGame, setStartGame] = useState(false);
 
     return (
         <>

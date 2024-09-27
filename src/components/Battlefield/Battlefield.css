@@ -1,8 +1,14 @@
 .battlefield {
+    height: 0;
+    overflow: hidden;
     color: var(--clr-black);
-    padding: 1rem 0 2rem;
+    /* padding: 1rem 0 2rem; */
     margin: 0 auto;
     transition: var(--transition);
+}
+
+.battlefield.active {
+    height: 200px;
 }
 
 .battlefield-heading {

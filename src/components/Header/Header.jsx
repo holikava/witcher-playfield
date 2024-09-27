@@ -12,13 +12,31 @@ const Header = () => {
         if (!startBattle) {
             setStartBattle(true);
             document.getElementById("header-fight-btn").innerText =
-                "Finish the fight";
+            "Close battlefield";
         } else {
             setStartBattle(false);
             document.getElementById("header-fight-btn").innerText =
-                "Let`s fight!";
-            document.querySelector(".battlefield-screen").innerHTML = "";
+            "Open battlefield";
         }
+        document.querySelector(".battlefield").classList.toggle("active");
+    };
+
+    const saveMembersStats = (e) => {
+        e.preventDefault();
+        const membersArray = document.querySelectorAll('.member-card');
+        membersArray.forEach((item) => {
+            if (item.id) {
+                if (localStorage.getItem(item.id)) {
+                    localStorage.removeItem(item.id);
+                }
+                let memberStats = {};
+                const inputs = item.querySelectorAll('input');
+                inputs.forEach(input => memberStats[input.name] = input.value);
+                memberStats.avatar = item.querySelector('.member-card-img img').src;
+                localStorage.setItem(item.id, JSON.stringify(memberStats))
+            }
+            console.log(JSON.parse(localStorage.getItem(item.id)));
+        })
     };
 
     return (
@@ -29,16 +47,16 @@ const Header = () => {
                 </div>
                 <div className='header-fight-btn'>
                     <Button
-                        text='Let`s fight!'
+                        text='Open battlefield'
                         onClick={openBattlefield}
                         id='header-fight-btn'
                     />
                 </div>
                 <div className='header-save-btn'>
-                    <Button text='Save game' />
+                    <Button text='Save players stats' onClick={saveMembersStats} />
                 </div>
             </header>
-            {startBattle && <Battlefield />}
+            <Battlefield />
         </>
     );
 };

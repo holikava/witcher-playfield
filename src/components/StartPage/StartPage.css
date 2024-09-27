@@ -6,20 +6,19 @@
 }
 
 .start-page-content {
-    text-align: center;
     margin: auto;
 }
 
 .start-page-img {
     max-width: 300px;
-    margin-bottom: 4rem;
+    margin: 0 auto 4rem;
 }
 
 .start-page-btn {
+    display: block;
     background-color: var(--clr-primary);
     box-shadow: var(--box-shadow-light);
-    padding: 0.7rem 2rem;
-    transition: var(--transition);
+    margin: 0 auto 2rem;
 }
 
 .start-page-btn:hover {

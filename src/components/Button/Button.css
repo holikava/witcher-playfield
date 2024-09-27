@@ -1,7 +1,9 @@
-button {
-    font-size: 1.3rem;
-    font-weight: bolder;
+.btn {
+    width: max-content;
+    min-width: 15rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     border-radius: var(--border-radius);
-    padding: 0.3rem 1rem;
+    padding: 0.6rem 1rem;
     transition: var(--transition);
 }

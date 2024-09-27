@@ -4,7 +4,7 @@ import "./../../App/App.css";
 
 const Button = ({className, text, onClick, id}) => {
     return (
-        <button className={className} onClick={onClick} id={id}>{text}</button>
+        <button className={className ? className + ' ' + 'btn' : 'btn'} onClick={onClick} id={id}>{text}</button>
     );
 };
 
