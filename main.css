@@ -9,10 +9,11 @@
     --clr-primary: #d18a07;
     --clr-secondary: #407488;
 
-    --border: 3px solid var(--clr-primary);
+    --border: 2px solid var(--clr-primary);
     --border-radius: 0.5rem;
     --box-shadow-light: 0px 0px 10px var(--clr-light);
     --box-shadow-dark: 0px 0px 10px var(--clr-dark);
+    --box-shadow-color: 0px 0px 10px var(--clr-primary);
     --transition: all 0.3s ease-in-out;
 }
 
@@ -60,16 +61,21 @@ input:focus-visible {
     outline: none;
 }
 
+
 @media (max-width: 800px) {
     :root {
         font-size: 12px;
     }
 }
-button {
-    font-size: 1.5rem;
-    font-weight: bolder;
+.btn {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    min-width: 15rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     border-radius: var(--border-radius);
-    padding: 0 1rem;
+    padding: 0.6rem 1rem;
     -webkit-transition: var(--transition);
     transition: var(--transition);
 }
@@ -83,22 +89,20 @@ button {
 }
 
 .start-page-content {
-    text-align: center;
     margin: auto;
 }
 
 .start-page-img {
     max-width: 300px;
-    margin-bottom: 4rem;
+    margin: 0 auto 4rem;
 }
 
 .start-page-btn {
+    display: block;
     background-color: var(--clr-primary);
     -webkit-box-shadow: var(--box-shadow-light);
             box-shadow: var(--box-shadow-light);
-    padding: 0.7rem 2rem;
-    -webkit-transition: var(--transition);
-    transition: var(--transition);
+    margin: 0 auto 2rem;
 }
 
 .start-page-btn:hover {
@@ -291,16 +295,17 @@ input[type=url] {
     opacity: 0.7;
 }
 .battlefield {
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    bottom: 3rem;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-    height: auto;
+    height: 0;
+    overflow: hidden;
     color: var(--clr-black);
+    /* padding: 1rem 0 2rem; */
+    margin: 0 auto;
+    -webkit-transition: var(--transition);
+    transition: var(--transition);
+}
+
+.battlefield.active {
+    height: 200px;
 }
 
 .battlefield-heading {
@@ -314,9 +319,6 @@ input[type=url] {
         -ms-flex-align: center;
             align-items: center;
     gap: 0.5rem;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
     border-radius: var(--border-radius);
     -webkit-transition: var(--transition);
     transition: var(--transition);
@@ -325,7 +327,7 @@ input[type=url] {
 
 .battlefield-title {
     font-size: 1.5rem;
-    color: var(--clr-primary);
+    color: var(--clr-dark);
 }
 
 .battlefield-btn {
@@ -349,18 +351,22 @@ input[type=url] {
         -ms-flex-align: center;
             align-items: center;
     gap: 1rem;
-    width: 100%;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
     min-width: 300px;
     color: var(--clr-light);
+    background-color: var(--clr-dark);
     border-radius: var(--border-radius);
-    -webkit-box-shadow: var(--box-shadow-light);
-            box-shadow: var(--box-shadow-light);
+    -webkit-box-shadow: var(--box-shadow-dark);
+            box-shadow: var(--box-shadow-dark);
     padding: 1rem 2rem;
+    margin: 0 auto;
     -webkit-transition: var(--transition);
     transition: var(--transition);
 }
 
-.battlefield-screen-img {
+.battlefield-screen-member {
     cursor: pointer;
     position: relative;
     -ms-flex-negative: 0;
@@ -368,12 +374,10 @@ input[type=url] {
     width: 80px;
     height: 80px;
     border-radius: var(--border-radius);
-    -webkit-box-shadow: var(--box-shadow-dark);
-            box-shadow: var(--box-shadow-dark);
     overflow: hidden;
 }
 
-.battlefield-screen-img > img {
+.battlefield-screen-member > img {
     position: absolute;
     top: 0;
     left: 50%;
@@ -381,36 +385,86 @@ input[type=url] {
             transform: translateX(-50%);
     width: auto;
     height: inherit;
-}
-
-[data-tooltip]::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 0;
-    bottom: -3rem;
-    width: 100%;
-    height: 0;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: capitalize;
-    text-align: center;
-    line-height: 1;
-    color: var(--clr-black);
-    background-color: var(--clr-primary);
     border-radius: var(--border-radius);
-    padding: 0.2rem 0.1rem;
-    opacity: 0;
-    z-index: 100;
-    -webkit-transition: var(--transition);
-    transition: var(--transition);
 }
 
-[data-tooltip]:hover::before {
-    opacity: 0.8;
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
-    bottom: 0;
+.battlefield-screen-member-active {
+    border: var(--border);
+    -webkit-box-shadow: var(--box-shadow-color);
+            box-shadow: var(--box-shadow-color);
+}
+
+.selected {
+    opacity: 0.5;
+  }
+.header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-shadow: var(--box-shadow-dark);
+            box-shadow: var(--box-shadow-dark);
+    background-color: var(--clr-secondary);
+    padding: 0.5rem 3rem;
+    margin-bottom: 1rem;
+}
+
+.header > * {
+    -ms-flex-preferred-size: 300px;
+        flex-basis: 300px;
+}
+
+.header-timer {
+    text-align: left;
+}
+
+.header-fight-btn {
+    text-align: center;
+}
+
+.header-fight-btn > button {
+    background-color: var(--clr-primary);
+    -webkit-box-shadow: var(--box-shadow-dark);
+            box-shadow: var(--box-shadow-dark);
+}
+
+.header-fight-btn > button:hover {
+    background-color: var(--clr-light);
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+.header-save-btn {
+    text-align: right;
+}
+
+.header-save-btn > button {
+    background-color: var(--clr-light);
+    -webkit-box-shadow: var(--box-shadow-light);
+            box-shadow: var(--box-shadow-light);
+}
+
+.header-save-btn > button:hover {
+    background-color: var(--clr-primary);
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+.timer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 .playfield {
     position: relative;
