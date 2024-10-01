@@ -2,7 +2,7 @@ import React from "react";
 import "./Input.css";
 import "./../../App/App.css";
 
-const Input = ({ className, onChange, type, name, value }) => {
+const Input = ({ className, onChange, type, name, value}) => {
     return (
         <>
             {type === "number" && (
@@ -17,6 +17,9 @@ const Input = ({ className, onChange, type, name, value }) => {
             )}
             {type === "text" && (
                 <input className={className} type={type} onChange={onChange} name={name} value={value} />
+            )}
+             {type === "file" && (
+                <input className={className} type={type} onChange={onChange} name={name} />
             )}
         </>
     );

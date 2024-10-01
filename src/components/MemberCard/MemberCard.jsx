@@ -3,6 +3,7 @@ import "./MemberCard.css";
 import "./../../App/App.css";
 import Input from "../Input/Input";
 import ButtonIcon from "../ButtonIcon/ButtonIcon";
+import Button from "../Button/Button";
 
 const icons = {
     playerHealth: (
@@ -64,8 +65,8 @@ const icons = {
 };
 
 const avatars = {
-    player: "https://cdn1.ozone.ru/s3/multimedia-3/6584262771.jpg",
-    enemy: "https://img.goodfon.ru/original/960x854/c/e6/the-witcher-volk-fon.jpg",
+    player: "https://img.goodfon.ru/original/960x854/c/e6/the-witcher-volk-fon.jpg",
+    enemy: "https://i.pinimg.com/originals/84/f7/29/84f72966699a9c124c64372cffa49b4c.jpg",
 };
 
 const MemberCard = ({ role }) => {
@@ -102,25 +103,21 @@ const MemberCard = ({ role }) => {
 
     const setAvatar = (e) => {
         e.preventDefault();
-        const targetElem = e.target.closest(".member-card");
-        if (targetElem.querySelector(".member-avatar-input")) {
-            targetElem.querySelector(".member-avatar-input").remove();
-            return;
+        const target = e.target;
+        if (target.files && target.files.length) {
+            const avatar = target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(avatar);
+            reader.onload = () => {
+                const result = reader.result;
+                if (result) {
+                    setMember({
+                        ...member,
+                        avatar: result
+                    });
+                }
+            }
         }
-        const inputElem = document.createElement("input");
-        inputElem.setAttribute("type", "url");
-        inputElem.setAttribute("placeholder", "link on image");
-        inputElem.className = "member-avatar-input";
-        targetElem.append(inputElem);
-
-        inputElem.addEventListener("change", (e) => {
-            setMember({
-                ...member,
-                avatar: e.target.value,
-            });
-            targetElem.querySelector(".member-avatar-input").remove();
-            targetElem.querySelector(".member-card-img").style.opacity = "1";
-        });
     };
 
     const checkoutSavedMemberData = (value) => {
@@ -132,9 +129,15 @@ const MemberCard = ({ role }) => {
                 })
                 member[key] = savedData[key] ?? '';
             }
+            updateAvatar();
         }
-        console.log(member);
     };
+
+    const updateAvatar = () => {
+        //TODO: find better way to get current avatar container
+        let avatarContainer = document.getElementById(String(member.name).slice(0, -1));
+        avatarContainer.querySelector('.member-card-avatar img').src = member.avatar;
+    }
 
     const addMemberToBattle = (e) => {
         e.preventDefault();
@@ -178,19 +181,21 @@ const MemberCard = ({ role }) => {
                 <ButtonIcon icon={icons.removeBtn} />
             </div>
             <div
-                className='member-card-img'
+                className='member-card-avatar'
                 onDragStart={addMemberToBattle}
-                onDoubleClick={setAvatar}
             >
+                <div className="member-card-img">
                 {!member.avatar && (
                     <img
                         src={role === "player" ? avatars.player : avatars.enemy}
                         alt={member.name}
                     />
-                )}
-                {member.avatar && (
-                    <img src={member.avatar} alt={member.name} />
-                )}
+                    )}
+                {member.avatar && <img src={member.avatar} alt={member.name} />}
+                </div>
+                <label className='member-avatar-label'>Set avatar
+                    <Input type='file' onChange={setAvatar} className='member-avatar-input' />
+                </label>
             </div>
 
             <div className='member-card-info'>
@@ -202,7 +207,7 @@ const MemberCard = ({ role }) => {
                     onChange={(e) => {
                         setMember({
                             ...member,
-                            name: e.target.value,
+                            name: String(e.target.value).toLocaleLowerCase(),
                         });
                         checkoutSavedMemberData(e.target.value)
                     }}
